@@ -1,14 +1,12 @@
-//imports---------------------------------
 import { Link } from "react-router-dom";
 import "./Footer.css";
-//component---------------------------------
+
 function Footer() {
     const currentYear = new Date().getFullYear();
-    //body--------------------------------
+
     return (
         <footer className="public-footer">
 
-            {/* Background----------------------- */}
             <div className="footer-background">
                 <div className="footer-glow footer-glow-one" />
                 <div className="footer-glow footer-glow-two" />
@@ -16,8 +14,6 @@ function Footer() {
             </div>
 
             <div className="footer-container">
-
-                {/*CTA----------------------------- */}
 
                 <div className="footer-cta">
 
@@ -63,12 +59,7 @@ function Footer() {
 
                 </div>
 
-
-                {/*Main Footer---------------------------------- */}
-
                 <div className="footer-main">
-
-                    {/* Brand------------------------------- */}
 
                     <div className="footer-brand">
 
@@ -154,9 +145,6 @@ function Footer() {
                             intelligent decisions, and measurable results.
                         </p>
 
-
-                        {/* Socials------------------------------------ */}
-
                         <div className="footer-socials">
 
                             <a
@@ -187,9 +175,6 @@ function Footer() {
 
                     </div>
 
-
-                    {/* Platform--------------------------------- */}
-
                     <div className="footer-column">
 
                         <h3>Platform</h3>
@@ -212,9 +197,6 @@ function Footer() {
 
                     </div>
 
-
-                    {/* Company--------------------------- */}
-
                     <div className="footer-column">
 
                         <h3>Company</h3>
@@ -232,9 +214,6 @@ function Footer() {
                         </a>
 
                     </div>
-
-
-                    {/* Contact --------------------------------*/}
 
                     <div className="footer-column footer-contact">
 
@@ -271,13 +250,7 @@ function Footer() {
 
                 </div>
 
-
-                {/* Divider-------------------------------- */}
-
                 <div className="footer-divider" />
-
-
-                {/* Bottom------------------------- */}
 
                 <div className="footer-bottom">
 
@@ -286,7 +259,7 @@ function Footer() {
                         <span className="footer-status-dot" />
 
                         <p>
-                            © {currentYear} HRDashboard.
+                            ï¿½ {currentYear} HRDashboard.
                             All rights reserved.
                         </p>
 
@@ -307,9 +280,9 @@ function Footer() {
                 </div>
 
             </div>
+
         </footer>
     );
 }
 
 export default Footer;
-
