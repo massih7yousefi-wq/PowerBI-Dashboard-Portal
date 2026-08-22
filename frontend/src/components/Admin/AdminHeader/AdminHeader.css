@@ -1,0 +1,499 @@
+.admin-header {
+    position: relative;
+    z-index: 50;
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 0 28px;
+    background: rgba(8, 8, 11, 0.86);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.16);
+}
+
+
+    /*  Subtle Top Accent----------------------------------------------- */
+
+    .admin-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 8%;
+        right: 8%;
+        height: 1px;
+        background: linear-gradient( 90deg, transparent, rgba(139, 92, 246, 0.35), rgba(99, 102, 241, 0.15), transparent );
+        opacity: 0.8;
+    }
+
+
+/* Left---------------------------------- */
+
+.admin-header-left {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: 24px;
+}
+
+
+/* Brand------------------------------- */
+
+.admin-header-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.admin-header-logo {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(139, 92, 246, 0.22);
+    border-radius: 11px;
+    background: linear-gradient( 145deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.035) );
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-header-brand:hover .admin-header-logo {
+    transform: translateY(-1px);
+    border-color: rgba(139, 92, 246, 0.45);
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.12);
+}
+
+.admin-header-logo svg {
+    width: 26px;
+    height: 26px;
+}
+
+
+/* Logo Animation----------------------------------------- */
+
+.admin-logo-frame {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.07);
+    stroke-width: 1;
+}
+
+.admin-logo-bar {
+    fill: #8b5cf6;
+    transform-origin: center bottom;
+    animation: adminLogoBars 3s ease-in-out infinite;
+}
+
+.admin-logo-bar-one {
+    animation-delay: 0s;
+}
+
+.admin-logo-bar-two {
+    animation-delay: 0.15s;
+}
+
+.admin-logo-bar-three {
+    animation-delay: 0.3s;
+}
+
+@keyframes adminLogoBars {
+
+    0%, 100% {
+        opacity: 0.55;
+        transform: scaleY(0.85);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+.admin-logo-chart {
+    fill: none;
+    stroke: #c4b5fd;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 45;
+    stroke-dashoffset: 45;
+    animation: adminLogoChart 3.5s ease infinite;
+}
+
+@keyframes adminLogoChart {
+
+    0% {
+        stroke-dashoffset: 45;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    70%, 100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.admin-logo-dot {
+    fill: #ffffff;
+    transform-origin: center;
+    animation: adminLogoDot 2s ease-in-out infinite;
+}
+
+@keyframes adminLogoDot {
+
+    0%, 100% {
+        opacity: 0.45;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+
+/* Brand Typography------------------------------------*/
+
+.admin-header-brand-name {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+    .admin-header-brand-name strong {
+        color: #f4f4f5;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+    }
+
+        .admin-header-brand-name strong span {
+            color: #a78bfa;
+        }
+
+    .admin-header-brand-name small {
+        color: #52525b;
+        font-size: 7px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+
+/*Divider------------------------------------- */
+
+.admin-header-divider {
+    width: 1px;
+    height: 30px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+
+/*  Page Info-------------------------------- */
+
+.admin-header-page-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.admin-header-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #52525b;
+    font-size: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+}
+
+.admin-breadcrumb-arrow {
+    color: #3f3f46;
+}
+
+.admin-breadcrumb-current {
+    color: #71717a;
+}
+
+.admin-header-page-info h1 {
+    color: #e4e4e7;
+    font-size: 16px;
+    font-weight: 650;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+}
+
+
+/*  Actions----------------------------------*/
+
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+/* System Status---------------------------------- */
+
+.admin-system-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-right: 5px;
+    padding: 7px 10px;
+    color: #71717a;
+    font-size: 8px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 9px rgba(34, 197, 94, 0.7);
+    animation: adminStatusPulse 2s ease-in-out infinite;
+}
+
+@keyframes adminStatusPulse {
+
+    0%, 100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* Notification-------------------------------------------*/
+
+.admin-header-notification {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #71717a;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.025);
+    transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+    .admin-header-notification:hover {
+        color: #ffffff;
+        background: rgba(139, 92, 246, 0.08);
+        border-color: rgba(139, 92, 246, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .admin-header-notification svg {
+        width: 17px;
+        height: 17px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+    }
+
+.admin-notification-dot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #8b5cf6;
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.8);
+}
+
+
+/* Profile------------------------------------- */
+
+.admin-header-profile {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 150px;
+    padding: 5px 9px 5px 5px;
+    color: inherit;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.025);
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+    .admin-header-profile:hover {
+        background: rgba(255, 255, 255, 0.045);
+        border-color: rgba(139, 92, 246, 0.25);
+        transform: translateY(-1px);
+    }
+
+
+/* Avatar---------------------------------- */
+
+.admin-header-avatar {
+    width: 29px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    border-radius: 8px;
+    background: linear-gradient( 135deg, #6366f1, #8b5cf6 );
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+}
+
+
+/* User------------------------------ */
+
+.admin-header-user {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+    .admin-header-user strong {
+        color: #e4e4e7;
+        font-size: 10px;
+        font-weight: 650;
+    }
+
+    .admin-header-user span {
+        color: #52525b;
+        font-size: 8px;
+    }
+
+
+/* Arrow---------------------------- */
+
+.admin-profile-arrow {
+    width: 14px;
+    height: 14px;
+    margin-left: auto;
+    fill: none;
+    stroke: #52525b;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.25s ease, stroke 0.25s ease;
+}
+
+.admin-header-profile:hover .admin-profile-arrow {
+    transform: translateY(2px);
+    stroke: #a78bfa;
+}
+
+
+/* Responsive-------------------------------- */
+
+@media (max-width: 900px) {
+
+    .admin-header {
+        padding: 0 20px;
+    }
+
+    .admin-system-status {
+        display: none;
+    }
+
+    .admin-header-divider {
+        display: none;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .admin-header {
+        min-height: 68px;
+        padding: 0 15px;
+    }
+
+    .admin-header-brand-name {
+        display: none;
+    }
+
+    .admin-header-page-info h1 {
+        font-size: 14px;
+    }
+
+    .admin-header-breadcrumb {
+        display: none;
+    }
+
+    .admin-header-profile {
+        min-width: 38px;
+        padding: 4px;
+    }
+
+    .admin-header-user {
+        display: none;
+    }
+
+    .admin-profile-arrow {
+        display: none;
+    }
+
+    .admin-header-actions {
+        gap: 7px;
+    }
+}
+
+
+@media (max-width: 420px) {
+
+    .admin-header {
+        gap: 10px;
+    }
+
+    .admin-header-page-info h1 {
+        font-size: 13px;
+    }
+
+    .admin-header-notification {
+        width: 34px;
+        height: 34px;
+    }
+
+    .admin-header-avatar {
+        width: 27px;
+        height: 27px;
+    }
+}
+
+
+/* Reduced Motion---------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .admin-header *,
+    .admin-header *::before,
+    .admin-header *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
