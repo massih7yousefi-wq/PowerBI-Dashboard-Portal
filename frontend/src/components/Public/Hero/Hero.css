@@ -1,86 +1,149 @@
+/* =========================================================
+   HERO
+========================================================= */
+
 .hero {
     position: relative;
+
+    width: 100%;
+
     min-height: calc(100vh - 76px);
+
     display: flex;
     align-items: center;
+
     overflow: hidden;
-    background: radial-gradient( circle at 75% 45%, rgba(99, 102, 241, 0.08), transparent 30% ), #08080b;
-    color: #ffffff;
+
+    background:
+            radial-gradient(
+                    circle at 75% 45%,
+                    rgba(99, 102, 241, 0.07),
+                    transparent 32%
+            ),
+            #08080b;
+
+    color: #fff;
+
+    isolation: isolate;
 }
 
 
-/* Background--------------------------------------------- */
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
-.hero-background {
+.hero-bg {
     position: absolute;
     inset: 0;
+
     overflow: hidden;
+
     pointer-events: none;
+
+    z-index: -1;
 }
 
 
-/* Ambient glows------------------------------------- */
+/* Glow */
 
 .hero-glow {
     position: absolute;
+
+    width: 500px;
+    height: 500px;
+
     border-radius: 50%;
-    filter: blur(100px);
-    pointer-events: none;
+
+    filter: blur(120px);
+
+    opacity: 0.5;
 }
 
-.hero-glow-one {
-    width: 520px;
-    height: 520px;
-    top: -180px;
+.hero-glow-left {
+    top: -220px;
     left: -180px;
-    background: rgba(99, 102, 241, 0.13);
-    animation: heroGlowOne 10s ease-in-out infinite;
+
+    background: rgba(99, 102, 241, 0.12);
+
+    animation: glowLeft 12s ease-in-out infinite;
 }
 
-.hero-glow-two {
-    width: 600px;
-    height: 600px;
-    right: -220px;
-    bottom: -250px;
-    background: rgba(139, 92, 246, 0.10);
-    animation: heroGlowTwo 12s ease-in-out infinite;
+.hero-glow-right {
+    right: -240px;
+    bottom: -260px;
+
+    background: rgba(139, 92, 246, 0.09);
+
+    animation: glowRight 14s ease-in-out infinite;
 }
 
-@keyframes heroGlowOne {
-    0%, 100% {
+@keyframes glowLeft {
+
+    0%,
+    100% {
         transform: translate3d(0, 0, 0);
     }
 
     50% {
-        transform: translate3d(80px, 50px, 0);
+        transform: translate3d(70px, 40px, 0);
     }
 }
 
-@keyframes heroGlowTwo {
-    0%, 100% {
+@keyframes glowRight {
+
+    0%,
+    100% {
         transform: translate3d(0, 0, 0);
     }
 
     50% {
-        transform: translate3d(-70px, -40px, 0);
+        transform: translate3d(-60px, -40px, 0);
     }
 }
 
 
-/* Data Grid-------------------------------------*/
+/* =========================================================
+   GRID
+========================================================= */
 
 .hero-grid {
     position: absolute;
     inset: 0;
-    opacity: 0.28;
-    background-image: linear-gradient( rgba(255, 255, 255, 0.035) 1px, transparent 1px ), linear-gradient( 90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px );
+
+    opacity: 0.22;
+
+    background-image:
+            linear-gradient(
+                    rgba(255, 255, 255, 0.035) 1px,
+                    transparent 1px
+            ),
+            linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.035) 1px,
+                    transparent 1px
+            );
+
     background-size: 70px 70px;
-    mask-image: radial-gradient( ellipse at center, black 20%, transparent 75% );
-    -webkit-mask-image: radial-gradient( ellipse at center, black 20%, transparent 75% );
-    animation: gridMove 18s linear infinite;
+
+    mask-image:
+            radial-gradient(
+                    ellipse at center,
+                    black 10%,
+                    transparent 72%
+            );
+
+    -webkit-mask-image:
+            radial-gradient(
+                    ellipse at center,
+                    black 10%,
+                    transparent 72%
+            );
+
+    animation: gridMove 20s linear infinite;
 }
 
 @keyframes gridMove {
+
     from {
         transform: translateY(0);
     }
@@ -91,33 +154,55 @@
 }
 
 
-/*  Hero Container-----------------------------------*/
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .hero-container {
     position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1400px;
+
+    width: min(
+            calc(100% - 64px),
+            1320px
+    );
+
     margin: 0 auto;
-    padding: 90px 32px;
+
+    padding: 45px 0;
+
     display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(520px, 1.1fr);
+
+    grid-template-columns:
+        minmax(0, 0.95fr)
+        minmax(0, 1.05fr);
+
     align-items: center;
-    gap: 80px;
+
+    gap: 55px;
 }
 
 
-/* Content--------------------------------*/
+/* =========================================================
+   CONTENT
+========================================================= */
 
 .hero-content {
-    max-width: 650px;
-    animation: heroContentReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    min-width: 0;
+
+    max-width: 600px;
+
+    animation:
+            contentReveal
+            0.8s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            both;
 }
 
-@keyframes heroContentReveal {
+@keyframes contentReveal {
+
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(25px);
     }
 
     to {
@@ -127,44 +212,66 @@
 }
 
 
-/*Badge-------------------------------------- */
+/* =========================================================
+   BADGE
+========================================================= */
 
 .hero-badge {
     width: fit-content;
+
     display: flex;
     align-items: center;
+
     gap: 9px;
+
     padding: 7px 12px;
+
     border: 1px solid rgba(139, 92, 246, 0.22);
+
     border-radius: 999px;
-    background: rgba(139, 92, 246, 0.07);
+
+    background: rgba(139, 92, 246, 0.06);
+
     color: #a1a1aa;
+
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.4px;
-    box-shadow: 0 0 30px rgba(99, 102, 241, 0.05);
-    animation: badgeReveal 0.7s ease 0.15s both;
+
+    letter-spacing: 0.35px;
 }
 
 .hero-badge-dot {
     position: relative;
+
     width: 6px;
     height: 6px;
+
+    flex: 0 0 6px;
+
     border-radius: 50%;
+
     background: #a78bfa;
-    box-shadow: 0 0 10px rgba(167, 139, 250, 0.8);
+
+    box-shadow:
+            0 0 10px rgba(167, 139, 250, 0.8);
 }
 
-    .hero-badge-dot::after {
-        content: "";
-        position: absolute;
-        inset: -4px;
-        border: 1px solid rgba(167, 139, 250, 0.4);
-        border-radius: 50%;
-        animation: badgePulse 2s ease-out infinite;
-    }
+.hero-badge-dot::after {
+    content: "";
+
+    position: absolute;
+
+    inset: -4px;
+
+    border: 1px solid rgba(167, 139, 250, 0.4);
+
+    border-radius: 50%;
+
+    animation: badgePulse 2s ease-out infinite;
+}
 
 @keyframes badgePulse {
+
     0% {
         opacity: 0.8;
         transform: scale(0.6);
@@ -176,58 +283,90 @@
     }
 }
 
-@keyframes badgeReveal {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* Title--------------------------------------------- */
+/* =========================================================
+   TITLE
+========================================================= */
 
 .hero-title {
-    margin: 25px 0 0;
-    max-width: 650px;
-    font-size: clamp( 48px, 5vw, 76px );
+    margin: 22px 0 0;
+
+    max-width: 620px;
+
+    font-size: clamp(
+            48px,
+            5vw,
+            72px
+    );
+
     line-height: 0.98;
-    letter-spacing: -4px;
+
+    letter-spacing: -3.8px;
+
     font-weight: 750;
+
     color: #f4f4f5;
-    animation: titleReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+
+    animation:
+            titleReveal
+            0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.05s
+            both;
 }
 
-    .hero-title span {
-        display: block;
-        background: linear-gradient( 110deg, #ffffff 0%, #c4b5fd 45%, #8b5cf6 100% );
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: titleGradient 6s ease-in-out infinite;
-    }
+.hero-title span {
+    display: block;
+
+    margin-top: 4px;
+
+    background:
+            linear-gradient(
+                    110deg,
+                    #ffffff,
+                    #c4b5fd,
+                    #8b5cf6
+            );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    animation:
+            gradientMove
+            6s
+            ease-in-out
+            infinite;
+}
 
 @keyframes titleReveal {
+
     from {
         opacity: 0;
-        transform: translateY(30px);
-        filter: blur(5px);
+
+        transform:
+                translateY(25px);
+
+        filter: blur(4px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+                translateY(0);
+
         filter: blur(0);
     }
 }
 
-@keyframes titleGradient {
-    0%, 100% {
+@keyframes gradientMove {
+
+    0%,
+    100% {
         background-position: 0% center;
     }
 
@@ -237,260 +376,335 @@
 }
 
 
-/*Description--------------------------------*/
+/* =========================================================
+   DESCRIPTION
+========================================================= */
 
 .hero-description {
-    max-width: 570px;
-    margin: 28px 0 0;
-    color: #8b8b94;
-    font-size: 16px;
+    max-width: 540px;
+
+    margin: 23px 0 0;
+
+    color: #898991;
+
+    font-size: 15px;
+
     line-height: 1.75;
-    letter-spacing: -0.1px;
-    animation: descriptionReveal 0.8s ease 0.35s both;
-}
-
-@keyframes descriptionReveal {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 
-/* Actions--------------------------------------------- */
+/* =========================================================
+   ACTIONS
+========================================================= */
 
 .hero-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-top: 34px;
-    animation: actionsReveal 0.8s ease 0.45s both;
-}
 
-@keyframes actionsReveal {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
+    gap: 11px;
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    margin-top: 29px;
 }
 
 
-/* Primary ----------------------------------------*/
+/* =========================================================
+   BUTTONS
+========================================================= */
 
-.hero-primary-button {
-    position: relative;
-    display: flex;
+.hero-btn {
+    display: inline-flex;
+
     align-items: center;
-    gap: 14px;
-    padding: 13px 17px 13px 20px;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 650;
+    justify-content: center;
+
     text-decoration: none;
-    border: 1px solid rgba(167, 139, 250, 0.5);
+
     border-radius: 10px;
-    background: linear-gradient( 135deg, #6366f1, #8b5cf6 );
-    box-shadow: 0 10px 35px rgba(99, 102, 241, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-    .hero-primary-button::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -120%;
-        width: 80%;
-        height: 100%;
-        background: linear-gradient( 90deg, transparent, rgba(255, 255, 255, 0.22), transparent );
-        transform: skewX(-20deg);
-        transition: left 0.6s ease;
-    }
-
-    .hero-primary-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 16px 45px rgba(99, 102, 241, 0.3), 0 0 30px rgba(139, 92, 246, 0.12);
-    }
-
-        .hero-primary-button:hover::before {
-            left: 140%;
-        }
-
-    .hero-primary-button span {
-        font-size: 18px;
-        line-height: 0;
-        transition: transform 0.3s ease;
-    }
-
-    .hero-primary-button:hover span {
-        transform: translateX(4px);
-    }
-
-
-/* Secondary------------------------- */
-
-.hero-secondary-button {
-    padding: 13px 18px;
-    color: #a1a1aa;
     font-size: 13px;
     font-weight: 600;
-    text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.025);
-    transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+
+    transition:
+            transform 0.25s ease,
+            border-color 0.25s ease,
+            background 0.25s ease,
+            box-shadow 0.25s ease;
 }
 
-    .hero-secondary-button:hover {
-        color: #ffffff;
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255, 255, 255, 0.15);
-        transform: translateY(-2px);
-    }
+
+/* Primary */
+
+.hero-btn-primary {
+    gap: 13px;
+
+    padding: 13px 17px 13px 19px;
+
+    color: #fff;
+
+    border: 1px solid rgba(167, 139, 250, 0.45);
+
+    background:
+            linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #8b5cf6
+            );
+
+    box-shadow:
+            0 10px 30px rgba(99, 102, 241, 0.2);
+}
+
+.hero-btn-primary span {
+    font-size: 17px;
+
+    line-height: 0;
+
+    transition:
+            transform 0.25s ease;
+}
+
+.hero-btn-primary:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+            0 15px 40px rgba(99, 102, 241, 0.3);
+}
+
+.hero-btn-primary:hover span {
+    transform: translateX(4px);
+}
 
 
-/* Stats---------------------------------------------- */
+/* Secondary */
+
+.hero-btn-secondary {
+    padding: 13px 18px;
+
+    color: #a1a1aa;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.hero-btn-secondary:hover {
+    color: #fff;
+
+    border-color:
+            rgba(255, 255, 255, 0.15);
+
+    background:
+            rgba(255, 255, 255, 0.05);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
 
 .hero-stats {
     display: flex;
+
     align-items: center;
-    margin-top: 55px;
-    animation: statsReveal 0.8s ease 0.6s both;
-}
 
-@keyframes statsReveal {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    margin-top: 40px;
 }
 
 .hero-stat {
     display: flex;
+
     flex-direction: column;
-    gap: 5px;
+
+    gap: 4px;
 }
 
-    .hero-stat strong {
-        color: #e4e4e7;
-        font-size: 16px;
-        font-weight: 700;
-    }
+.hero-stat strong {
+    color: #e4e4e7;
 
-    .hero-stat span {
-        color: #63636c;
-        font-size: 10px;
-        font-weight: 500;
-        letter-spacing: 0.7px;
-        text-transform: uppercase;
-    }
+    font-size: 15px;
+    font-weight: 700;
+}
 
-.hero-stat-divider {
+.hero-stat span {
+    color: #606068;
+
+    font-size: 9px;
+    font-weight: 500;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+}
+
+.hero-stat-line {
     width: 1px;
-    height: 28px;
-    margin: 0 25px;
-    background: rgba(255, 255, 255, 0.08);
+    height: 27px;
+
+    margin: 0 23px;
+
+    background:
+            rgba(255, 255, 255, 0.08);
 }
 
 
-/* Dashboard Visual------------------------------- */
+/* =========================================================
+   VISUAL
+========================================================= */
 
 .hero-visual {
     position: relative;
-    min-height: 560px;
+
+    width: 100%;
+
+    min-width: 0;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    perspective: 1200px;
-    animation: visualReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+
+    padding: 20px 0;
+
+    animation:
+            visualReveal
+            0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.1s
+            both;
 }
 
 @keyframes visualReveal {
+
     from {
         opacity: 0;
-        transform: translateX(40px) scale(0.96);
+
+        transform:
+                translateX(30px)
+                scale(0.97);
     }
 
     to {
         opacity: 1;
-        transform: translateX(0) scale(1);
+
+        transform:
+                translateX(0)
+                scale(1);
     }
 }
 
 
-/* Dashboard Window---------------------------------------*/
+/* =========================================================
+   DASHBOARD
+========================================================= */
 
-.dashboard-window {
+.dashboard {
     position: relative;
-    width: min(650px, 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 18px;
-    background: linear-gradient( 145deg, rgba(25, 25, 32, 0.95), rgba(12, 12, 16, 0.98) );
-    box-shadow: 0 45px 100px rgba(0, 0, 0, 0.55), 0 0 80px rgba(99, 102, 241, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.025) inset;
+
+    width: 100%;
+
+    max-width: 640px;
+
+    border:
+            1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 17px;
+
+    background:
+            linear-gradient(
+                    145deg,
+                    rgba(25, 25, 32, 0.97),
+                    rgba(11, 11, 15, 0.99)
+            );
+
+    box-shadow:
+            0 35px 80px rgba(0, 0, 0, 0.55),
+            0 0 70px rgba(99, 102, 241, 0.07);
+
     overflow: hidden;
-    transform: rotateY(-5deg) rotateX(2deg);
-    transition: transform 0.6s ease, box-shadow 0.6s ease;
+
+    transform:
+            perspective(1200px)
+            rotateY(-4deg)
+            rotateX(2deg);
+
+    transition:
+            transform 0.5s ease,
+            box-shadow 0.5s ease;
 }
 
-    .dashboard-window:hover {
-        transform: rotateY(-1deg) rotateX(0deg) translateY(-6px);
-        box-shadow: 0 55px 120px rgba(0, 0, 0, 0.6), 0 0 100px rgba(99, 102, 241, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-    }
+.dashboard:hover {
+    transform:
+            perspective(1200px)
+            rotateY(-1deg)
+            rotateX(0)
+            translateY(-5px);
+
+    box-shadow:
+            0 45px 100px rgba(0, 0, 0, 0.6),
+            0 0 90px rgba(99, 102, 241, 0.1);
+}
 
 
-/* Dashboard Header----------------------------------------*/
+/* =========================================================
+   DASHBOARD TOP
+========================================================= */
 
-.dashboard-window-header {
-    height: 46px;
+.dashboard-top {
+    position: relative;
+
+    height: 43px;
+
     display: flex;
+
     align-items: center;
-    padding: 0 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    background: rgba(255, 255, 255, 0.018);
-}
 
-.dashboard-window-dots {
-    display: flex;
-    gap: 6px;
-}
+    justify-content: center;
 
-    .dashboard-window-dots span {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.16);
-    }
+    border-bottom:
+            1px solid rgba(255, 255, 255, 0.06);
 
-.dashboard-window-title {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #71717a;
-    font-size: 10px;
+    background:
+            rgba(255, 255, 255, 0.015);
+
+    color: #686870;
+
+    font-size: 9px;
     font-weight: 600;
+
     letter-spacing: 0.8px;
 }
 
+.dashboard-dots {
+    position: absolute;
 
-/* Dashboard Content-------------------------------------*/
+    left: 15px;
 
-.dashboard-content {
-    padding: 25px;
+    display: flex;
+
+    gap: 6px;
+}
+
+.dashboard-dots i {
+    width: 7px;
+    height: 7px;
+
+    display: block;
+
+    border-radius: 50%;
+
+    background:
+            rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================================================
+   DASHBOARD BODY
+========================================================= */
+
+.dashboard-body {
+    padding: 19px;
 }
 
 
@@ -498,340 +712,551 @@
 
 .dashboard-heading {
     display: flex;
-    justify-content: space-between;
+
     align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
 }
 
-    .dashboard-heading div:first-child {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
+.dashboard-heading div {
+    min-width: 0;
+}
 
-    .dashboard-heading span {
-        color: #71717a;
-        font-size: 9px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
+.dashboard-heading small {
+    display: block;
 
-    .dashboard-heading strong {
-        color: #e4e4e7;
-        font-size: 17px;
-    }
+    color: #67676f;
 
+    font-size: 8px;
 
-/* Period---------------------------------------------------- */
+    letter-spacing: 1px;
+}
 
-.dashboard-period {
-    padding: 7px 10px;
-    color: #71717a;
-    font-size: 9px;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 7px;
-    background: rgba(255, 255, 255, 0.025);
+.dashboard-heading h3 {
+    margin: 4px 0 0;
+
+    color: #e4e4e7;
+
+    font-size: 16px;
+    font-weight: 650;
+}
+
+.dashboard-date {
+    flex-shrink: 0;
+
+    padding: 6px 9px;
+
+    color: #707078;
+
+    font-size: 8px;
+
+    border:
+            1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 6px;
+
+    background:
+            rgba(255, 255, 255, 0.025);
 }
 
 
-/* Metrics--------------------------------------- */
+/* =========================================================
+   METRICS
+========================================================= */
 
 .dashboard-metrics {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-top: 22px;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 8px;
+
+    margin-top: 17px;
 }
 
-.dashboard-card {
-    position: relative;
+.metric {
+    min-width: 0;
+
     display: flex;
+
     flex-direction: column;
-    gap: 7px;
-    padding: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 11px;
-    background: rgba(255, 255, 255, 0.025);
-    overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+
+    gap: 5px;
+
+    padding: 12px;
+
+    border:
+            1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 9px;
+
+    background:
+            rgba(255, 255, 255, 0.025);
 }
 
-    .dashboard-card::after {
-        content: "";
-        position: absolute;
-        top: -30px;
-        right: -30px;
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: rgba(139, 92, 246, 0.08);
-        filter: blur(20px);
-    }
+.metric span {
+    color: #696970;
 
-    .dashboard-card:hover {
-        transform: translateY(-3px);
-        border-color: rgba(139, 92, 246, 0.2);
-        background: rgba(255, 255, 255, 0.04);
-    }
+    font-size: 8px;
 
-    .dashboard-card span {
-        color: #71717a;
-        font-size: 9px;
-    }
+    white-space: nowrap;
+}
 
-    .dashboard-card strong {
-        color: #f4f4f5;
-        font-size: 19px;
-        letter-spacing: -0.5px;
-    }
+.metric strong {
+    color: #f4f4f5;
 
-    .dashboard-card small {
-        color: #8b5cf6;
-        font-size: 9px;
-        font-weight: 600;
-    }
+    font-size: 17px;
+
+    letter-spacing: -0.5px;
+
+    white-space: nowrap;
+}
+
+.metric small {
+    color: #8b5cf6;
+
+    font-size: 8px;
+    font-weight: 600;
+}
 
 
-/* Chart----------------------------------------------- */
+/* =========================================================
+   CHART
+========================================================= */
 
 .dashboard-chart {
-    margin-top: 15px;
-    padding: 17px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.018);
+    margin-top: 10px;
+
+    padding: 13px;
+
+    border:
+            1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 10px;
+
+    background:
+            rgba(255, 255, 255, 0.018);
 }
 
-.chart-header {
+.chart-top {
     display: flex;
+
     justify-content: space-between;
-    color: #71717a;
-    font-size: 9px;
+
+    color: #696970;
+
+    font-size: 8px;
 }
 
-.chart-area {
+.chart {
     position: relative;
-    height: 180px;
-    margin-top: 18px;
+
+    width: 100%;
+
+    height: 145px;
+
+    margin-top: 11px;
+
     overflow: hidden;
-    background-image: linear-gradient( rgba(255, 255, 255, 0.035) 1px, transparent 1px ), linear-gradient( 90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px );
-    background-size: 100% 36px, 52px 100%;
+}
+
+.chart-grid {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+            linear-gradient(
+                    rgba(255, 255, 255, 0.035) 1px,
+                    transparent 1px
+            ),
+            linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.025) 1px,
+                    transparent 1px
+            );
+
+    background-size:
+            100% 29px,
+            50px 100%;
 }
 
 
-/* Chart Lines-------------------------------------- */
+/* =========================================================
+   SVG CHART
+========================================================= */
+
+.chart-svg {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+}
 
 .chart-line {
-    position: absolute;
-    left: -2%;
-    width: 104%;
-    height: 3px;
-    border-radius: 999px;
-    transform-origin: left center;
+    fill: none;
+
+    stroke:
+            url(#heroChartGradient);
+
+    stroke-width: 4;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+    filter:
+            drop-shadow(
+                    0 0 7px
+                    rgba(139, 92, 246, 0.6)
+            );
+
+    stroke-dasharray: 1000;
+
+    stroke-dashoffset: 1000;
+
+    animation:
+            drawChart
+            2s
+            ease-out
+            0.5s
+            forwards;
 }
 
-.chart-line-one {
-    top: 66%;
-    background: linear-gradient( 90deg, #6366f1, #a78bfa, #6366f1 );
-    clip-path: polygon( 0% 70%, 8% 65%, 16% 73%, 24% 45%, 32% 55%, 40% 30%, 49% 48%, 58% 20%, 67% 37%, 76% 15%, 85% 25%, 93% 8%, 100% 18%, 100% 35%, 93% 25%, 85% 42%, 76% 32%, 67% 48%, 58% 32%, 49% 58%, 40% 42%, 32% 65%, 24% 55%, 16% 83%, 8% 75%, 0% 80% );
-    filter: drop-shadow( 0 0 8px rgba(139, 92, 246, 0.6) );
-    animation: chartPulse 4s ease-in-out infinite;
+.chart-area-fill {
+    fill:
+            rgba(99, 102, 241, 0.06);
 }
 
-.chart-line-two {
-    top: 75%;
-    opacity: 0.3;
-    background: #6366f1;
-    clip-path: polygon( 0% 70%, 15% 65%, 30% 75%, 45% 50%, 60% 60%, 75% 35%, 90% 48%, 100% 30%, 100% 40%, 90% 58%, 75% 45%, 60% 70%, 45% 60%, 30% 85%, 15% 75%, 0% 80% );
-}
+@keyframes drawChart {
 
-@keyframes chartPulse {
-    0%, 100% {
-        opacity: 0.8;
+    to {
+        stroke-dashoffset: 0;
     }
-
-    50% {
-        opacity: 1;
-        filter: drop-shadow( 0 0 14px rgba(139, 92, 246, 0.85) );
-    }
 }
 
 
-/*  Chart Points-----------------------------------*/
+/* =========================================================
+   CHART DOTS
+========================================================= */
 
-.chart-point {
+.chart-dot {
     position: absolute;
+
     width: 7px;
     height: 7px;
+
     border-radius: 50%;
+
     background: #c4b5fd;
-    border: 2px solid #111116;
-    box-shadow: 0 0 10px rgba(167, 139, 250, 0.8);
-    animation: pointPulse 2.5s ease-in-out infinite;
+
+    border:
+            2px solid #111116;
+
+    box-shadow:
+            0 0 10px
+            rgba(167, 139, 250, 0.8);
+
+    animation:
+            pointPulse
+            2.5s
+            ease-in-out
+            infinite;
 }
 
-.point-one {
-    left: 16%;
-    top: 64%;
+.dot-1 {
+    left: 21%;
+    top: 66%;
 }
 
-.point-two {
-    left: 32%;
-    top: 50%;
-    animation-delay: 0.25s;
-}
-
-.point-three {
-    left: 49%;
+.dot-2 {
+    left: 42%;
     top: 43%;
-    animation-delay: 0.5s;
+
+    animation-delay: 0.3s;
 }
 
-.point-four {
-    left: 67%;
-    top: 34%;
-    animation-delay: 0.75s;
+.dot-3 {
+    left: 62%;
+    top: 28%;
+
+    animation-delay: 0.6s;
 }
 
-.point-five {
-    left: 93%;
-    top: 20%;
-    animation-delay: 1s;
+.dot-4 {
+    left: 82%;
+    top: 13%;
+
+    animation-delay: 0.9s;
+}
+
+.dot-5 {
+    right: 1%;
+    top: 22%;
+
+    animation-delay: 1.2s;
 }
 
 @keyframes pointPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(0.8);
         opacity: 0.65;
     }
 
     50% {
-        transform: scale(1.25);
+        transform: scale(1.2);
         opacity: 1;
     }
 }
 
 
-/* Floating Cards---------------------------- */
+/* =========================================================
+   FLOATING CARDS
+========================================================= */
 
-.hero-floating-card {
+.floating-card {
     position: absolute;
-    padding: 15px 17px;
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 12px;
-    background: rgba(17, 17, 22, 0.88);
+
+    z-index: 5;
+
+    border:
+            1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 11px;
+
+    background:
+            rgba(17, 17, 22, 0.9);
+
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(99, 102, 241, 0.08);
-    z-index: 5;
+
+    box-shadow:
+            0 20px 45px rgba(0, 0, 0, 0.4),
+            0 0 25px rgba(99, 102, 241, 0.07);
 }
 
 
-/* Card One---------------------------------*/
+/* Top */
 
-.hero-floating-card-one {
-    top: 80px;
-    right: -15px;
-    min-width: 135px;
+.floating-card-top {
+    top: 18px;
+    right: -22px;
+
+    min-width: 125px;
+
     display: flex;
+
     flex-direction: column;
+
     gap: 4px;
-    animation: floatingOne 5s ease-in-out infinite;
+
+    padding: 13px 15px;
+
+    animation:
+            floatTop
+            5s
+            ease-in-out
+            infinite;
 }
 
-.floating-label {
+.floating-card-top span {
     color: #71717a;
-    font-size: 9px;
-    font-weight: 600;
+
+    font-size: 8px;
+
     text-transform: uppercase;
+
     letter-spacing: 0.8px;
 }
 
-.hero-floating-card-one strong {
-    color: #ffffff;
-    font-size: 22px;
+.floating-card-top strong {
+    color: #fff;
+
+    font-size: 20px;
 }
 
-.hero-floating-card-one small {
+.floating-card-top small {
     color: #8b5cf6;
-    font-size: 9px;
+
+    font-size: 8px;
 }
 
 
-/* Card Two---------------------------- */
+/* Bottom */
 
-.hero-floating-card-two {
-    left: -25px;
-    bottom: 95px;
+.floating-card-bottom {
+    left: -22px;
+    bottom: 22px;
+
     display: flex;
+
     align-items: center;
-    gap: 10px;
-    animation: floatingTwo 6s ease-in-out infinite;
+
+    gap: 9px;
+
+    padding: 11px 13px;
+
+    animation:
+            floatBottom
+            6s
+            ease-in-out
+            infinite;
 }
 
 .floating-icon {
-    width: 30px;
-    height: 30px;
+    width: 29px;
+    height: 29px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+
+    border-radius: 7px;
+
     color: #c4b5fd;
-    background: rgba(139, 92, 246, 0.12);
-    border: 1px solid rgba(139, 92, 246, 0.18);
-    font-size: 15px;
+
+    background:
+            rgba(139, 92, 246, 0.12);
+
+    border:
+            1px solid rgba(139, 92, 246, 0.18);
 }
 
-.hero-floating-card-two div {
+.floating-card-bottom div:last-child {
     display: flex;
+
     flex-direction: column;
-    gap: 3px;
+
+    gap: 2px;
 }
 
-.hero-floating-card-two strong {
+.floating-card-bottom strong {
     color: #e4e4e7;
-    font-size: 11px;
+
+    font-size: 10px;
 }
 
-.hero-floating-card-two small {
+.floating-card-bottom small {
     color: #71717a;
-    font-size: 9px;
+
+    font-size: 8px;
 }
 
-@keyframes floatingOne {
-    0%, 100% {
+@keyframes floatTop {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-12px);
+        transform: translateY(-9px);
     }
 }
 
-@keyframes floatingTwo {
-    0%, 100% {
+@keyframes floatBottom {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
 
     50% {
-        transform: translateY(10px);
+        transform: translateY(8px);
     }
 }
 
 
-/* Responsive-----------------------------------*/
+/* =========================================================
+   SHORT LAPTOP
+========================================================= */
 
-@media (max-width: 1150px) {
+@media (max-height: 800px) and (min-width: 1151px) {
 
     .hero-container {
+        padding-top: 25px;
+        padding-bottom: 25px;
+
+        gap: 40px;
+    }
+
+    .hero-title {
+        font-size: clamp(
+                44px,
+                4.4vw,
+                64px
+        );
+    }
+
+    .hero-description {
+        margin-top: 18px;
+    }
+
+    .hero-actions {
+        margin-top: 23px;
+    }
+
+    .hero-stats {
+        margin-top: 30px;
+    }
+
+    .dashboard-body {
+        padding: 16px;
+    }
+
+    .dashboard-chart {
+        margin-top: 8px;
+    }
+
+    .chart {
+        height: 125px;
+    }
+
+    .floating-card-top {
+        top: 8px;
+    }
+
+    .floating-card-bottom {
+        bottom: 10px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-container {
+        width: min(
+                calc(100% - 48px),
+                760px
+        );
+
         grid-template-columns: 1fr;
-        gap: 50px;
-        padding-top: 70px;
-        padding-bottom: 80px;
+
+        gap: 45px;
+
+        padding: 65px 0 75px;
     }
 
     .hero-content {
-        max-width: 750px;
+        max-width: 700px;
+
         margin: 0 auto;
+
         text-align: center;
     }
 
@@ -853,176 +1278,242 @@
     }
 
     .hero-visual {
-        min-height: 520px;
-        width: min(750px, 100%);
+        max-width: 700px;
+
         margin: 0 auto;
+    }
+
+    .floating-card-top {
+        right: -5px;
+    }
+
+    .floating-card-bottom {
+        left: -5px;
     }
 }
 
 
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 700px) {
 
-    .hero {
-        min-height: auto;
-    }
-
     .hero-container {
-        padding: 65px 20px 70px;
-        gap: 35px;
+        width: calc(100% - 36px);
+
+        padding: 55px 0 65px;
+
+        gap: 38px;
     }
 
     .hero-title {
-        font-size: clamp(42px, 12vw, 58px);
+        font-size: clamp(
+                42px,
+                12vw,
+                56px
+        );
+
         letter-spacing: -2.8px;
     }
 
     .hero-description {
         font-size: 14px;
+
         line-height: 1.7;
     }
 
     .hero-stats {
-        margin-top: 40px;
+        margin-top: 35px;
     }
 
-    .hero-stat-divider {
+    .hero-stat-line {
         margin: 0 15px;
     }
 
     .hero-visual {
-        min-height: 390px;
+        padding: 5px 0;
     }
 
-    .dashboard-window {
-        width: 100%;
+    .dashboard {
         transform: none;
     }
 
-    .dashboard-content {
-        padding: 17px;
+    .dashboard:hover {
+        transform: translateY(-3px);
+    }
+
+    .dashboard-body {
+        padding: 15px;
     }
 
     .dashboard-metrics {
         gap: 6px;
     }
 
-    .dashboard-card {
+    .metric {
+        padding: 9px;
+    }
+
+    .metric strong {
+        font-size: 14px;
+    }
+
+    .dashboard-chart {
         padding: 10px;
     }
 
-        .dashboard-card strong {
-            font-size: 15px;
-        }
-
-    .dashboard-chart {
-        padding: 12px;
+    .chart {
+        height: 120px;
     }
 
-    .chart-area {
-        height: 130px;
+    .floating-card-top {
+        right: -4px;
+
+        transform: scale(0.82);
+
+        transform-origin: right top;
     }
 
-    .hero-floating-card-one {
-        top: 20px;
-        right: -5px;
-        transform: scale(0.85);
-    }
+    .floating-card-bottom {
+        left: -4px;
 
-    .hero-floating-card-two {
-        left: -5px;
-        bottom: 30px;
-        transform: scale(0.85);
+        transform: scale(0.82);
+
+        transform-origin: left bottom;
     }
 }
 
 
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
 @media (max-width: 480px) {
 
     .hero-container {
-        padding-left: 16px;
-        padding-right: 16px;
+        width: calc(100% - 28px);
+
+        padding: 48px 0 55px;
+
+        gap: 32px;
+    }
+
+    .hero-title {
+        font-size: 42px;
+
+        letter-spacing: -2.3px;
+    }
+
+    .hero-description {
+        font-size: 13px;
     }
 
     .hero-actions {
-        flex-direction: column;
         width: 100%;
+
+        flex-direction: column;
+
+        gap: 8px;
     }
 
-    .hero-primary-button,
-    .hero-secondary-button {
+    .hero-btn {
         width: 100%;
-        justify-content: center;
-        text-align: center;
+
+        box-sizing: border-box;
     }
 
     .hero-stats {
         width: 100%;
+
         justify-content: space-between;
     }
 
-    .hero-stat-divider {
-        margin: 0 8px;
-    }
-
     .hero-stat strong {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .hero-stat span {
-        font-size: 8px;
+        font-size: 7px;
     }
 
-    .dashboard-window-header {
-        height: 40px;
+    .hero-stat-line {
+        margin: 0 7px;
     }
 
-    .dashboard-heading strong {
-        font-size: 14px;
+    .dashboard-top {
+        height: 38px;
     }
 
-    .dashboard-period {
+    .dashboard-body {
+        padding: 12px;
+    }
+
+    .dashboard-date {
         display: none;
+    }
+
+    .dashboard-heading h3 {
+        font-size: 14px;
     }
 
     .dashboard-metrics {
         grid-template-columns: 1fr;
     }
 
-    .dashboard-card {
+    .metric {
         display: grid;
+
         grid-template-columns: 1fr auto;
+
         align-items: center;
-        gap: 5px;
     }
 
-        .dashboard-card span {
-            grid-column: 1;
-        }
+    .metric span {
+        grid-column: 1;
+    }
 
-        .dashboard-card strong {
-            grid-column: 2;
-            grid-row: 1 / span 2;
-        }
+    .metric strong {
+        grid-column: 2;
 
-        .dashboard-card small {
-            grid-column: 1;
-        }
+        grid-row: 1 / span 2;
+    }
 
-    .hero-floating-card {
+    .metric small {
+        grid-column: 1;
+    }
+
+    .floating-card {
         display: none;
     }
 }
 
 
-/* Reduced Motion----------------------- */
+/* =========================================================
+   SAFETY
+========================================================= */
+
+.hero *,
+.hero *::before,
+.hero *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    *,
-    *::before,
-    *::after {
+    .hero *,
+    .hero *::before,
+    .hero *::after {
+
         animation-duration: 0.01ms !important;
+
         animation-iteration-count: 1 !important;
+
         transition-duration: 0.01ms !important;
     }
 }

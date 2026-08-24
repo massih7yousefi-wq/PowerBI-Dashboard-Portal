@@ -1,0 +1,913 @@
+/* =========================================================
+   WHY SECTION
+========================================================= */
+
+.why-section {
+    position: relative;
+    overflow: hidden;
+    padding: 150px 0;
+    background:
+            radial-gradient(
+                    circle at 15% 50%,
+                    rgba(99, 102, 241, 0.055),
+                    transparent 30%
+            ),
+            radial-gradient(
+                    circle at 85% 70%,
+                    rgba(139, 92, 246, 0.045),
+                    transparent 28%
+            ),
+            #08080b;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   Ambient Background
+========================================================= */
+
+.why-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background-image:
+            linear-gradient(
+                    rgba(255, 255, 255, 0.018) 1px,
+                    transparent 1px
+            ),
+            linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.018) 1px,
+                    transparent 1px
+            );
+
+    background-size: 80px 80px;
+
+    mask-image: radial-gradient(
+            ellipse at center,
+            black 10%,
+            transparent 72%
+    );
+
+    -webkit-mask-image: radial-gradient(
+            ellipse at center,
+            black 10%,
+            transparent 72%
+    );
+
+    opacity: 0.45;
+}
+
+
+/* =========================================================
+   Container
+========================================================= */
+
+.why-container {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 1280px;
+
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+
+/* =========================================================
+   Heading
+========================================================= */
+
+.why-heading {
+    max-width: 760px;
+    margin-bottom: 90px;
+
+    animation: whyHeadingReveal 0.9s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+@keyframes whyHeadingReveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+
+.why-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #8b5cf6;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+
+    text-transform: uppercase;
+}
+
+
+.why-eyebrow::before {
+    content: "";
+
+    width: 20px;
+    height: 1px;
+
+    background: linear-gradient(
+            90deg,
+            #6366f1,
+            #a78bfa
+    );
+
+    box-shadow:
+            0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+
+.why-heading h2 {
+    margin: 22px 0 0;
+
+    max-width: 750px;
+
+    font-size: clamp(
+            42px,
+            5vw,
+            68px
+    );
+
+    line-height: 1;
+    letter-spacing: -3.5px;
+    font-weight: 750;
+
+    color: #f4f4f5;
+}
+
+
+.why-heading h2 span {
+    display: block;
+
+    background:
+            linear-gradient(
+                    110deg,
+                    #ffffff 0%,
+                    #c4b5fd 45%,
+                    #8b5cf6 100%
+            );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation:
+            whyGradient 7s ease-in-out infinite;
+}
+
+
+@keyframes whyGradient {
+    0%,
+    100% {
+        background-position: 0% center;
+    }
+
+    50% {
+        background-position: 100% center;
+    }
+}
+
+
+.why-heading p {
+    max-width: 610px;
+
+    margin: 28px 0 0;
+
+    color: #85858f;
+
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   Main Content
+========================================================= */
+
+.why-content {
+    display: grid;
+
+    grid-template-columns:
+        minmax(420px, 0.95fr)
+        minmax(0, 1.05fr);
+
+    align-items: center;
+
+    gap: 110px;
+}
+
+
+/* =========================================================
+   Visual
+========================================================= */
+
+.why-visual {
+    position: relative;
+
+    min-height: 470px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    isolation: isolate;
+
+    animation:
+            whyVisualReveal 1s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.15s
+            both;
+}
+
+
+@keyframes whyVisualReveal {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   Visual Glow
+========================================================= */
+
+.why-visual-glow {
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background:
+            radial-gradient(
+                    circle,
+                    rgba(99, 102, 241, 0.18),
+                    rgba(139, 92, 246, 0.07) 38%,
+                    transparent 70%
+            );
+
+    filter: blur(20px);
+
+    animation:
+            whyCoreGlow 5s ease-in-out infinite;
+}
+
+
+@keyframes whyCoreGlow {
+    0%,
+    100% {
+        transform: scale(0.95);
+        opacity: 0.65;
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   Orbit
+========================================================= */
+
+.why-orbit {
+    position: absolute;
+
+    border: 1px solid
+    rgba(139, 92, 246, 0.16);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+.why-orbit-one {
+    width: 340px;
+    height: 340px;
+
+    transform: rotate(-18deg);
+
+    border-top-color:
+            rgba(167, 139, 250, 0.55);
+
+    animation:
+            whyOrbitOne 18s linear infinite;
+}
+
+
+.why-orbit-two {
+    width: 430px;
+    height: 230px;
+
+    transform:
+            rotate(35deg);
+
+    border-left-color:
+            rgba(99, 102, 241, 0.4);
+
+    animation:
+            whyOrbitTwo 22s linear infinite reverse;
+}
+
+
+@keyframes whyOrbitOne {
+    from {
+        transform:
+                rotate(-18deg);
+    }
+
+    to {
+        transform:
+                rotate(342deg);
+    }
+}
+
+
+@keyframes whyOrbitTwo {
+    from {
+        transform:
+                rotate(35deg);
+    }
+
+    to {
+        transform:
+                rotate(395deg);
+    }
+}
+
+
+/* =========================================================
+   Orbit Data Points
+========================================================= */
+
+.why-orbit::before,
+.why-orbit::after {
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #a78bfa;
+
+    box-shadow:
+            0 0 10px rgba(167, 139, 250, 0.9),
+            0 0 25px rgba(139, 92, 246, 0.45);
+}
+
+
+.why-orbit-one::before {
+    top: 22px;
+    left: 50%;
+}
+
+
+.why-orbit-one::after {
+    right: 25px;
+    bottom: 55px;
+}
+
+
+.why-orbit-two::before {
+    top: 50%;
+    left: -4px;
+}
+
+
+.why-orbit-two::after {
+    right: 15px;
+    bottom: 20px;
+}
+
+
+/* =========================================================
+   Center
+========================================================= */
+
+.why-center {
+    position: relative;
+    z-index: 3;
+
+    width: 190px;
+    height: 190px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid
+    rgba(255, 255, 255, 0.1);
+
+    border-radius: 50%;
+
+    background:
+            radial-gradient(
+                    circle at 35% 25%,
+                    rgba(99, 102, 241, 0.14),
+                    transparent 50%
+            ),
+            rgba(14, 14, 19, 0.9);
+
+    box-shadow:
+            0 30px 80px rgba(0, 0, 0, 0.55),
+            0 0 60px rgba(99, 102, 241, 0.12),
+            inset 0 0 35px rgba(255, 255, 255, 0.025);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    animation:
+            whyCenterFloat 5s ease-in-out infinite;
+}
+
+
+@keyframes whyCenterFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+/* =========================================================
+   Center Icon
+========================================================= */
+
+.why-center-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    border: 1px solid
+    rgba(139, 92, 246, 0.25);
+
+    border-radius: 13px;
+
+    background:
+            rgba(99, 102, 241, 0.1);
+
+    box-shadow:
+            0 0 30px rgba(99, 102, 241, 0.1);
+}
+
+
+.why-center-icon svg {
+    width: 24px;
+    height: 24px;
+
+    fill: none;
+
+    stroke: #a78bfa;
+
+    stroke-width: 1.5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.why-center > span {
+    color: #71717a;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.why-center > strong {
+    margin-top: 5px;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+
+    background:
+            linear-gradient(
+                    100deg,
+                    #ffffff,
+                    #a78bfa
+            );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* =========================================================
+   Advantages
+========================================================= */
+
+.why-advantages {
+    display: flex;
+    flex-direction: column;
+
+    border-top:
+            1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+.why-advantage {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 55px 1fr;
+
+    gap: 25px;
+
+    padding: 30px 0;
+
+    border-bottom:
+            1px solid rgba(255, 255, 255, 0.07);
+
+    transition:
+            padding-left 0.35s ease,
+            background 0.35s ease;
+
+    animation:
+            whyItemReveal 0.8s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            both;
+}
+
+
+.why-advantage:nth-child(1) {
+    animation-delay: 0.25s;
+}
+
+.why-advantage:nth-child(2) {
+    animation-delay: 0.35s;
+}
+
+.why-advantage:nth-child(3) {
+    animation-delay: 0.45s;
+}
+
+
+@keyframes whyItemReveal {
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+.why-advantage::before {
+    content: "";
+
+    position: absolute;
+
+    left: -1px;
+    top: 0;
+
+    width: 2px;
+    height: 0;
+
+    background:
+            linear-gradient(
+                    180deg,
+                    #6366f1,
+                    #a78bfa
+            );
+
+    box-shadow:
+            0 0 15px rgba(139, 92, 246, 0.6);
+
+    transition:
+            height 0.35s ease;
+}
+
+
+.why-advantage:hover {
+    padding-left: 15px;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    rgba(139, 92, 246, 0.045),
+                    transparent
+            );
+}
+
+
+.why-advantage:hover::before {
+    height: 100%;
+}
+
+
+/* =========================================================
+   Number
+========================================================= */
+
+.why-number {
+    color: #55555e;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    transition:
+            color 0.3s ease;
+}
+
+
+.why-advantage:hover .why-number {
+    color: #a78bfa;
+}
+
+
+/* =========================================================
+   Content
+========================================================= */
+
+.why-advantage-content h3 {
+    margin: 0;
+
+    color: #e4e4e7;
+
+    font-size: 19px;
+    font-weight: 650;
+
+    letter-spacing: -0.4px;
+
+    transition:
+            color 0.3s ease;
+}
+
+
+.why-advantage:hover
+.why-advantage-content h3 {
+    color: #ffffff;
+}
+
+
+.why-advantage-content p {
+    max-width: 520px;
+
+    margin: 9px 0 0;
+
+    color: #777780;
+
+    font-size: 13px;
+    line-height: 1.75;
+
+    transition:
+            color 0.3s ease;
+}
+
+
+.why-advantage:hover
+.why-advantage-content p {
+    color: #96969f;
+}
+
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .why-section {
+        padding: 110px 0;
+    }
+
+    .why-heading {
+        margin-bottom: 65px;
+    }
+
+    .why-content {
+        grid-template-columns: 1fr;
+
+        gap: 70px;
+    }
+
+    .why-visual {
+        min-height: 430px;
+    }
+
+    .why-advantages {
+        max-width: 750px;
+        margin: 0 auto;
+
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .why-section {
+        padding: 90px 0;
+    }
+
+    .why-container {
+        padding: 0 20px;
+    }
+
+    .why-heading {
+        margin-bottom: 55px;
+    }
+
+    .why-heading h2 {
+        font-size: clamp(
+                38px,
+                10vw,
+                54px
+        );
+
+        letter-spacing: -2.5px;
+    }
+
+    .why-heading p {
+        font-size: 14px;
+    }
+
+    .why-content {
+        gap: 50px;
+    }
+
+    .why-visual {
+        min-height: 350px;
+    }
+
+    .why-orbit-one {
+        width: 270px;
+        height: 270px;
+    }
+
+    .why-orbit-two {
+        width: 330px;
+        height: 180px;
+    }
+
+    .why-center {
+        width: 155px;
+        height: 155px;
+    }
+
+    .why-center-icon {
+        width: 40px;
+        height: 40px;
+
+        margin-bottom: 11px;
+    }
+
+    .why-center-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .why-center > strong {
+        font-size: 17px;
+    }
+
+    .why-advantage {
+        grid-template-columns: 42px 1fr;
+
+        gap: 15px;
+
+        padding: 24px 0;
+    }
+
+    .why-advantage-content h3 {
+        font-size: 17px;
+    }
+
+    .why-advantage-content p {
+        font-size: 12px;
+        line-height: 1.7;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .why-section {
+        padding: 75px 0;
+    }
+
+    .why-container {
+        padding: 0 16px;
+    }
+
+    .why-heading h2 {
+        font-size: 38px;
+        letter-spacing: -2px;
+    }
+
+    .why-visual {
+        min-height: 290px;
+    }
+
+    .why-orbit-one {
+        width: 220px;
+        height: 220px;
+    }
+
+    .why-orbit-two {
+        width: 260px;
+        height: 140px;
+    }
+
+    .why-center {
+        width: 125px;
+        height: 125px;
+    }
+
+    .why-center-icon {
+        width: 34px;
+        height: 34px;
+
+        margin-bottom: 8px;
+    }
+
+    .why-center-icon svg {
+        width: 17px;
+        height: 17px;
+    }
+
+    .why-center > span {
+        font-size: 7px;
+        letter-spacing: 1.5px;
+    }
+
+    .why-center > strong {
+        font-size: 14px;
+    }
+
+    .why-advantage:hover {
+        padding-left: 8px;
+    }
+}
+
+
+/* =========================================================
+   Reduced Motion
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
