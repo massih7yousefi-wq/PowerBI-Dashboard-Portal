@@ -1,0 +1,50 @@
+# Build
+bin/
+obj/
+
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# User secrets
+secrets.json
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# ASP.NET / .NET
+appsettings.Local.json
+appsettings.*.local.json
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test results
+TestResults/
+coverage/
+
+# Publish
+publish/
+wwwroot/uploads/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Database local files
+*.db
+*.db-shm
+*.db-wal
