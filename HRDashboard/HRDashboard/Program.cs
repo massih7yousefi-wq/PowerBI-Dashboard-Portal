@@ -296,12 +296,10 @@ else if (app.Environment.IsProduction())
 // Error handling
 // ---------------------------------------------------------
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-else
+app.UseSwagger();
+app.UseSwaggerUI();
+
+if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler();
     app.UseHsts();
