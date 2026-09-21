@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { BrandLogo } from '../common/BrandLogo';
 
 interface SidebarProps {
   open: boolean;
@@ -7,18 +8,56 @@ interface SidebarProps {
 }
 
 const navigation = [
-  { label: 'Dashboard', path: '/dashboard', icon: '⌂' },
-  { label: 'Projects', path: '/projects', icon: '▣' },
-  { label: 'Tasks', path: '/tasks', icon: '✓' },
-  { label: 'Metrics', path: '/metrics', icon: '◫' },
-  { label: 'Insights', path: '/insights', icon: '✦' },
-  { label: 'Categories', path: '/categories', icon: '◈' },
-  { label: 'Favorites', path: '/favorites', icon: '★' },
-  { label: 'Activities', path: '/activities', icon: '◷' },
+  {
+    label: 'Dashboard',
+    path: '/dashboard',
+    icon: '⌂',
+  },
+  {
+    label: 'Projects',
+    path: '/projects',
+    icon: '▣',
+  },
+  {
+    label: 'Tasks',
+    path: '/tasks',
+    icon: '✓',
+  },
+  {
+    label: 'Metrics',
+    path: '/metrics',
+    icon: '◫',
+  },
+  {
+    label: 'Insights',
+    path: '/insights',
+    icon: '✦',
+  },
+  {
+    label: 'Categories',
+    path: '/categories',
+    icon: '◈',
+  },
+  {
+    label: 'Favorites',
+    path: '/favorites',
+    icon: '★',
+  },
+  {
+    label: 'Activities',
+    path: '/activities',
+    icon: '◷',
+  },
 ];
 
-export function Sidebar({ open, onClose }: SidebarProps) {
+export function Sidebar({
+  open,
+  onClose,
+}: SidebarProps) {
   const { user, logout } = useAuth();
+
+  const avatarLetter =
+    user?.email?.charAt(0).toUpperCase() ?? 'U';
 
   return (
     <>
@@ -30,42 +69,76 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         />
       )}
 
-      <aside className={`sidebar ${open ? 'sidebar-open' : ''}`}>
+      <aside
+        className={`sidebar ${
+          open ? 'sidebar-open' : ''
+        }`}
+      >
         <div className="sidebar-brand">
-          <div className="brand-mark">H</div>
-          <div>
-            <strong>HRDashboard</strong>
-            <span>Business Intelligence</span>
-          </div>
+          <BrandLogo
+            size="small"
+            subtitle="Analytics Platform"
+          />
         </div>
 
-        <nav className="sidebar-nav" aria-label="Main navigation">
-          <span className="nav-section-title">Workspace</span>
+        <div className="sidebar-section">
+          <span className="nav-section-title">
+            WORKSPACE
+          </span>
 
-          {navigation.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              onClick={onClose}
-              className={({ isActive }) =>
-                `nav-link ${isActive ? 'nav-link-active' : ''}`
-              }
-            >
-              <span className="nav-icon">{item.icon}</span>
-              <span>{item.label}</span>
-            </NavLink>
-          ))}
-        </nav>
+          <nav
+            className="sidebar-nav"
+            aria-label="Main navigation"
+          >
+            {navigation.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                onClick={onClose}
+                className={({ isActive }) =>
+                  `nav-link ${
+                    isActive
+                      ? 'nav-link-active'
+                      : ''
+                  }`
+                }
+              >
+                <span
+                  className="nav-icon"
+                  aria-hidden="true"
+                >
+                  {item.icon}
+                </span>
+
+                <span className="nav-label">
+                  {item.label}
+                </span>
+
+                <span
+                  className="nav-active-dot"
+                  aria-hidden="true"
+                />
+              </NavLink>
+            ))}
+          </nav>
+        </div>
+
+        <div className="sidebar-spacer" />
 
         <div className="sidebar-footer">
           <div className="sidebar-user">
             <div className="avatar">
-              {user?.email.charAt(0).toUpperCase()}
+              {avatarLetter}
             </div>
 
-            <div>
-              <strong>{user?.email}</strong>
-              <span>{user?.role}</span>
+            <div className="sidebar-user-info">
+              <strong>
+                {user?.email ?? 'User'}
+              </strong>
+
+              <span>
+                {user?.role ?? 'Member'}
+              </span>
             </div>
           </div>
 
@@ -74,8 +147,14 @@ export function Sidebar({ open, onClose }: SidebarProps) {
             className="logout-button"
             onClick={logout}
           >
-            <span>↪</span>
-            Logout
+            <span
+              className="logout-icon"
+              aria-hidden="true"
+            >
+              ↪
+            </span>
+
+            <span>Logout</span>
           </button>
         </div>
       </aside>

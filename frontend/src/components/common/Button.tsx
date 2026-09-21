@@ -1,4 +1,7 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type {
+  ButtonHTMLAttributes,
+  ReactNode,
+} from 'react';
 
 type ButtonVariant =
   | 'primary'
@@ -7,7 +10,8 @@ type ButtonVariant =
   | 'ghost'
   | 'success';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   loading?: boolean;
   children: ReactNode;
