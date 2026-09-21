@@ -22,24 +22,32 @@ public class DashboardService : IDashboardService
     {
         var now = DateTime.UtcNow;
 
-        var totalProjectsTask =
-            _context.Projects.CountAsync();
+        // -------------------------------------------------
+        // Counts
+        // -------------------------------------------------
 
-        var totalMetricsTask =
-            _context.Metrics.CountAsync();
+        var totalProjects =
+            await _context.Projects.CountAsync();
 
-        var totalTasksTask =
-            _context.BiTasks.CountAsync();
+        var totalMetrics =
+            await _context.Metrics.CountAsync();
 
-        var completedTasksTask =
-            _context.BiTasks.CountAsync(
+        var totalTasks =
+            await _context.BiTasks.CountAsync();
+
+        var completedTasks =
+            await _context.BiTasks.CountAsync(
                 t => t.Status == BiTaskStatus.Done);
 
-        var totalInsightsTask =
-            _context.Insights.CountAsync();
+        var totalInsights =
+            await _context.Insights.CountAsync();
 
-        var recentActivitiesTask =
-            _context.Activities
+        // -------------------------------------------------
+        // Recent Activities
+        // -------------------------------------------------
+
+        var recentActivities =
+            await _context.Activities
                 .AsNoTracking()
                 .OrderByDescending(a => a.CreatedAt)
                 .Take(10)
@@ -54,8 +62,12 @@ public class DashboardService : IDashboardService
                 })
                 .ToListAsync();
 
-        var recentInsightsTask =
-            _context.Insights
+        // -------------------------------------------------
+        // Recent Insights
+        // -------------------------------------------------
+
+        var recentInsights =
+            await _context.Insights
                 .AsNoTracking()
                 .OrderByDescending(i => i.CreatedAt)
                 .Take(5)
@@ -71,8 +83,12 @@ public class DashboardService : IDashboardService
                 })
                 .ToListAsync();
 
-        var upcomingTasksTask =
-            _context.BiTasks
+        // -------------------------------------------------
+        // Upcoming Tasks
+        // -------------------------------------------------
+
+        var upcomingTasks =
+            await _context.BiTasks
                 .AsNoTracking()
                 .Where(t =>
                     t.Status != BiTaskStatus.Done &&
@@ -93,30 +109,21 @@ public class DashboardService : IDashboardService
                 })
                 .ToListAsync();
 
-        await Task.WhenAll(
-            totalProjectsTask,
-            totalMetricsTask,
-            totalTasksTask,
-            completedTasksTask,
-            totalInsightsTask,
-            recentActivitiesTask,
-            recentInsightsTask,
-            upcomingTasksTask);
-
-        var totalTasks = totalTasksTask.Result;
-        var completedTasks = completedTasksTask.Result;
+        // -------------------------------------------------
+        // Response
+        // -------------------------------------------------
 
         return new DashboardSummaryResponseDto
         {
-            TotalProjects = totalProjectsTask.Result,
-            TotalMetrics = totalMetricsTask.Result,
+            TotalProjects = totalProjects,
+            TotalMetrics = totalMetrics,
             TotalTasks = totalTasks,
             CompletedTasks = completedTasks,
             PendingTasks = totalTasks - completedTasks,
-            TotalInsights = totalInsightsTask.Result,
-            RecentActivities = recentActivitiesTask.Result,
-            RecentInsights = recentInsightsTask.Result,
-            UpcomingTasks = upcomingTasksTask.Result
+            TotalInsights = totalInsights,
+            RecentActivities = recentActivities,
+            RecentInsights = recentInsights,
+            UpcomingTasks = upcomingTasks
         };
     }
 }
