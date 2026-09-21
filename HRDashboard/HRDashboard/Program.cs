@@ -174,20 +174,48 @@ builder.Services.AddProblemDetails();
 // CORS
 // ---------------------------------------------------------
 
-var frontendUrl = configuration["Frontend:Url"];
+/*
+ * ASP.NET Core configuration maps:
+ *
+ * Frontend__Url
+ *
+ * to:
+ *
+ * Frontend:Url
+ *
+ * Example Render environment variable:
+ *
+ * Frontend__Url=http://localhost:5173
+ *
+ * Later, when the frontend is deployed:
+ *
+ * Frontend__Url=https://your-frontend-domain.com
+ */
 
-var allowedOrigins = new List<string>();
+var configuredFrontendUrl =
+    configuration["Frontend:Url"];
 
-if (!string.IsNullOrWhiteSpace(frontendUrl))
+var allowedOrigins = new List<string>
 {
-    allowedOrigins.Add(frontendUrl);
+    // Local Vite development server.
+    "http://localhost:5173"
+};
+
+// Add configured frontend URL from environment/configuration.
+if (!string.IsNullOrWhiteSpace(configuredFrontendUrl))
+{
+    var normalizedFrontendUrl =
+        configuredFrontendUrl.Trim().TrimEnd('/');
+
+    if (!allowedOrigins.Contains(
+            normalizedFrontendUrl,
+            StringComparer.OrdinalIgnoreCase))
+    {
+        allowedOrigins.Add(normalizedFrontendUrl);
+    }
 }
 
-if (builder.Environment.IsDevelopment())
-{
-    allowedOrigins.Add("http://localhost:5173");
-}
-
+// Remove duplicates.
 allowedOrigins = allowedOrigins
     .Distinct(StringComparer.OrdinalIgnoreCase)
     .ToList();
@@ -196,22 +224,6 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("Frontend", policy =>
     {
-        if (allowedOrigins.Count == 0)
-        {
-            if (builder.Environment.IsProduction())
-            {
-                throw new InvalidOperationException(
-                    "Frontend:Url must be configured in production.");
-            }
-
-            policy
-                .WithOrigins("http://localhost:5173")
-                .AllowAnyHeader()
-                .AllowAnyMethod();
-
-            return;
-        }
-
         policy
             .WithOrigins(allowedOrigins.ToArray())
             .AllowAnyHeader()
@@ -280,16 +292,19 @@ using (var scope = app.Services.CreateScope())
 // Render PORT
 // ---------------------------------------------------------
 
-var port = Environment.GetEnvironmentVariable("PORT");
+var port =
+    Environment.GetEnvironmentVariable("PORT");
 
 if (!string.IsNullOrWhiteSpace(port) &&
     int.TryParse(port, out var renderPort))
 {
-    app.Urls.Add($"http://0.0.0.0:{renderPort}");
+    app.Urls.Add(
+        $"http://0.0.0.0:{renderPort}");
 }
 else if (app.Environment.IsProduction())
 {
-    app.Urls.Add("http://0.0.0.0:10000");
+    app.Urls.Add(
+        "http://0.0.0.0:10000");
 }
 
 // ---------------------------------------------------------
@@ -311,6 +326,13 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+/*
+ * CORS must run before authentication/authorization
+ * and before the controllers are mapped.
+ *
+ * This also allows ASP.NET Core to correctly handle
+ * browser OPTIONS preflight requests.
+ */
 app.UseCors("Frontend");
 
 app.UseAuthentication();
